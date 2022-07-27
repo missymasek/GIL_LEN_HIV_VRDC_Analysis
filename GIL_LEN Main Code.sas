@@ -30,7 +30,7 @@ OPTIONS
 	symbolgen; 		/* Displays the results of resolving macro variable references. */
 
 *Define macro variable for HIV;
-%let HCPCS_trogarzo = ('J1746'); 
+%let HCPCS_TROGARZO = ('J1746'); 
 %let NDC_TROGARZO = ('62064012201','62064012202');
 %let NDC_RUKOBIA =  ('49702025018');
 
@@ -49,7 +49,7 @@ FFS Processing
 
 data MSSP_Revenue_IP_20&yr2.&mo.;
 	set  RIFQ20&yr..inpatient_revenue_&mo. (keep = bene_id clm_id  ClaimID CLM_LINE_NUM  HCPCS_CD File REV_CNTR_UNIT_CNT REV_CNTR_TOT_CHRG_AMT);
-	if hcpcs_cd IN  &HCPCS_trogarzo.;
+	if hcpcs_cd IN  &HCPCS_TROGARZO.;
 	ClaimID = cats("IP",put(CLM_ID,z12.)); /*HRT says z12. but i think it is z15.?*/
 
 	Length File $3.;
@@ -58,7 +58,7 @@ run;
 
 data MSSP_Revenue_SNF_20&yr2.&mo.;
 	set  RIFQ20&yr..SNF_revenue_&mo. (keep = bene_id clm_id  ClaimID CLM_LINE_NUM  HCPCS_CD  File REV_CNTR_UNIT_CNT REV_CNTR_TOT_CHRG_AMT);
-	if hcpcs_cd IN  &HCPCS_trogarzo.;
+	if hcpcs_cd IN  &HCPCS_TROGARZO.;
 	ClaimID = cats("SNF",put(CLM_ID,z12.)); 
 
 	Length File $3.;
@@ -67,7 +67,7 @@ run;
 
 data MSSP_Revenue_OP_20&yr2.&mo.;
 	set  RIFQ20&yr..outpatient_revenue_&mo. (keep = bene_id clm_id  ClaimID CLM_LINE_NUM  HCPCS_CD File REV_CNTR_UNIT_CNT REV_CNTR_TOT_CHRG_AMT);
-	if hcpcs_cd IN  &HCPCS_trogarzo.;
+	if hcpcs_cd IN  &HCPCS_TROGARZO.;
 	ClaimID = cats("OP",put(CLM_ID,z12.)); 
 
 	Length File $3.;
@@ -76,7 +76,7 @@ run;
 
 data MSSP_Revenue_PB_20&yr2.&mo.;
 	set  RIFQ20&yr..bcarrier_line_&mo. (keep = bene_id clm_id  ClaimID LINE_NUM  HCPCS_CD File REV_CNTR_UNIT_CNT REV_CNTR_TOT_CHRG_AMT);
-	if hcpcs_cd IN  &HCPCS_trogarzo.;
+	if hcpcs_cd IN  &HCPCS_TROGARZO.;
 	REV_CNTR_UNIT_CNT = CARR_LINE_MTUS_CNT;
 	REV_CNTR_TOT_CHRG_AMT = LINE_ALOWD_CHRG_AMT;
 	CLM_LINE_NUM = LINE_NUM;
@@ -88,7 +88,7 @@ run;
 
 data MSSP_Revenue_HSP_20&yr2.&mo.;
 	set  RIFQ20&yr..hospice_revenue_&mo.  (keep = bene_id clm_id  ClaimID CLM_LINE_NUM  HCPCS_CD File REV_CNTR_UNIT_CNT REV_CNTR_TOT_CHRG_AMT);
-	if hcpcs_cd IN  &HCPCS_trogarzo.;
+	if hcpcs_cd IN  &HCPCS_TROGARZO.;
 	ClaimID = cats("HSP",put(CLM_ID,z12.)); 
 
 	Length File $3.;
@@ -97,7 +97,7 @@ run;
 
 data MSSP_Revenue_HHA_20&yr2.&mo.;
 	set  RIFQ20&yr..hha_revenue_&mo. (keep = bene_id clm_id  ClaimID CLM_LINE_NUM  HCPCS_CD File REV_CNTR_UNIT_CNT REV_CNTR_TOT_CHRG_AMT);
-	if hcpcs_cd IN  &HCPCS_trogarzo.;
+	if hcpcs_cd IN  &HCPCS_TROGARZO.;
 	ClaimID = cats("HHA",put(CLM_ID,z12.)); 
 
 	Length File $3.;
@@ -106,7 +106,7 @@ run;
 
 data MSSP_Revenue_DME_20&yr2.&mo.;
 	set  RIFQ20&yr..dme_line_&mo. (keep = bene_id clm_id  ClaimID LINE_NUM  HCPCS_CD File REV_CNTR_UNIT_CNT REV_CNTR_TOT_CHRG_AMT);
-	if hcpcs_cd IN  &HCPCS_trogarzo.;
+	if hcpcs_cd IN  &HCPCS_TROGARZO.;
 	REV_CNTR_UNIT_CNT = DMERC_LINE_MTUS_CNT;
 	REV_CNTR_TOT_CHRG_AMT = LINE_ALOWD_CHRG_AMT;
 	CLM_LINE_NUM = LINE_NUM;
