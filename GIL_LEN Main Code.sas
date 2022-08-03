@@ -566,7 +566,7 @@ run;
 *Pull FFS claims by Month;
 %macro Pull_FFS_One(type,yearmo);
 
-data FFS_Claims_&type._&yearmo._pre (Keep = 
+data pre_FFS_Claims_&type._&yearmo. (Keep = 
 	Bene_ID YearMO MR_Line_Case MR_Cases_Admits MR_Units_Days MR_Procs
 
 	Clm_ID
@@ -614,7 +614,7 @@ run;
 
 *Only keep data for HIV members, separate step for troubleshooting purposes;
 data FFS_Claims_&type._&yearmo.;
-	set FFS_Claims_&type._&yearmo._pre;
+	set pre_FFS_Claims_&type._&yearmo.;
 
 	if HIV_Member = 1;
 run;
@@ -622,7 +622,7 @@ run;
 
 %macro Pull_FFS_Two(type,yearmo);
 
-data FFS_Claims_&type._&yearmo._pre (Keep = 
+data pre_FFS_Claims_&type._&yearmo. (Keep = 
 	Bene_ID YearMO MR_Line_Case MR_Cases_Admits MR_Units_Days MR_Procs
 
 	Clm_ID
@@ -670,7 +670,7 @@ run;
 
 *Only keep data for HIV members, separate step for troubleshooting purposes;
 data FFS_Claims_&type._&yearmo.;
-	set FFS_Claims_&type._&yearmo._pre;
+	set pre_FFS_Claims_&type._&yearmo.;
 
 	if HIV_Member = 1;
 run;
